@@ -1,0 +1,21 @@
+{
+  "name": "cv-cover-letter-nepal",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test:bullet": "node scripts/test-bullet-improver.mjs",
+    "preview": "vite preview",
+    "postbuild": "node scripts/prepare-pages.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {}
+}
