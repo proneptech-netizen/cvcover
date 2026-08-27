@@ -36,6 +36,10 @@ function InstagramIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" /></svg>
 }
 
+function TikTokIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 5.82a4.85 4.85 0 0 1-1.2-3.19h-3.08v12.42a2.59 2.59 0 1 1-2.24-2.57V9.36a5.69 5.69 0 1 0 5.32 5.69V8.76a7.9 7.9 0 0 0 4.6 1.47V7.16a4.88 4.88 0 0 1-3.4-1.34Z" /></svg>
+}
+
 export default function Footer() {
   return (
     <footer id="site-footer" className="site-footer">
@@ -51,6 +55,7 @@ export default function Footer() {
               <a className="site-footer-social site-footer-social-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><WhatsAppIcon /></a>
               <a className="site-footer-social site-footer-social-facebook" href="https://www.facebook.com/people/Cv-Cover-Letter-Nepal/61555818296589/" target="_blank" rel="noopener noreferrer" aria-label="Visit CV & Cover Letter Nepal on Facebook"><FacebookIcon /></a>
               <a className="site-footer-social site-footer-social-instagram" href="https://www.instagram.com/cvandcoverletternepal/" target="_blank" rel="noopener noreferrer" aria-label="Visit CV & Cover Letter Nepal on Instagram"><InstagramIcon /></a>
+              <a className="site-footer-social site-footer-social-tiktok" href="https://www.tiktok.com/@cvandcoverletter_nepal" target="_blank" rel="noopener noreferrer" aria-label="Follow CV & Cover Letter Nepal on TikTok"><TikTokIcon /></a>
             </div>
           </div>
 

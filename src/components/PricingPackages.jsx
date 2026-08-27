@@ -1,5 +1,4 @@
 import { CircleCheck, Info } from 'lucide-react'
-import { CABIN_CREW_SERVICE_NAMES, CV_AND_COVER_LETTER_PRICING, money } from '../utils/servicePricing.js'
 
 const packages = [
   {
@@ -30,8 +29,6 @@ const packages = [
 ]
 
 const customQuoteUrl = 'https://wa.me/9779862989407?text=Hello%2C%20I%20would%20like%20to%20request%20a%20custom%20quotation.'
-const cabinCrewPackageUrl = `/free-tools?category=cv-career&service=${encodeURIComponent(CABIN_CREW_SERVICE_NAMES.combination)}#service-estimator`
-const cabinCrewFeatures = ['Professionally written ATS-friendly CV', 'Tailored Cabin Crew cover letter', 'Professional profile and skills optimisation', 'Relevant training and experience presentation', 'Airline-specific keyword alignment', 'Final PDF and editable Word files']
 
 export default function PricingPackages() {
   return (
@@ -54,13 +51,6 @@ export default function PricingPackages() {
             </article>
           ))}
         </div>
-
-        <aside className="cabin-crew-package" aria-labelledby="cabin-crew-package-title">
-          <div><span>Cabin Crew Option</span><h3 id="cabin-crew-package-title">Cabin Crew Application Package</h3><p>Starting from {money(CV_AND_COVER_LETTER_PRICING.standard)}. Same price as our standard CV + Cover Letter service.</p></div>
-          <ul>{cabinCrewFeatures.map(feature => <li key={feature}><CircleCheck aria-hidden="true" />{feature}</li>)}</ul>
-          <div className="cabin-crew-package-prices"><span>Standard <strong>{money(CV_AND_COVER_LETTER_PRICING.standard)}</strong></span><span>Priority <strong>{money(CV_AND_COVER_LETTER_PRICING.priority)}</strong></span><span>Express <strong>{money(CV_AND_COVER_LETTER_PRICING.express)}</strong></span></div>
-          <a href={cabinCrewPackageUrl}>Choose Cabin Crew Package</a>
-        </aside>
 
         <div className="custom-service-notice">
           <Info aria-hidden="true" />
