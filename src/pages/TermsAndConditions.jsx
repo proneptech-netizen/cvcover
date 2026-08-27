@@ -1,5 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
-
 const sections = [
   {
     title: 'Introduction',
@@ -236,7 +234,7 @@ function LegalText({ children }) {
   return parts.map((part, index) => (
     <span key={`${part}-${index}`}>
       {part}
-      {index < parts.length - 1 && <a href={sitePath('/privacy-policy')}>Privacy Policy</a>}
+      {index < parts.length - 1 && <a href="/privacy-policy">Privacy Policy</a>}
     </span>
   ))
 }

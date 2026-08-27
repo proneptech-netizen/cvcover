@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { ArrowRight, ChevronRight, Globe2, Mail, Phone } from 'lucide-react'
 
 const whatsappUrl = 'https://wa.me/9779862989407'
@@ -43,8 +42,8 @@ export default function Footer() {
       <div className="site-footer-container">
         <div className="site-footer-grid">
           <div className="site-footer-brand-column">
-            <a className="site-footer-brand" href={sitePath('/')} aria-label="CV and Cover Letter Nepal home">
-              <span className="site-footer-logo"><img src={sitePath('/assets/cv-cover-letter-nepal-logo-transparent-tight.png')} alt="" width="1101" height="721" loading="lazy" decoding="async" /></span>
+            <a className="site-footer-brand" href="/" aria-label="CV and Cover Letter Nepal home">
+              <span className="site-footer-logo"><img src="/assets/cv-cover-letter-nepal-logo-transparent-tight.png" alt="" /></span>
               <span><strong>CV &amp; Cover Letter</strong><b>Nepal <span aria-label="Nepal flag">🇳🇵</span></b></span>
             </a>
             <p>Professional online document and application assistance for clients worldwide.</p>
@@ -58,15 +57,15 @@ export default function Footer() {
           <nav className="site-footer-column site-footer-services" aria-labelledby="footer-services-title">
             <h2 id="footer-services-title">Popular Services</h2>
             <ul className="site-footer-link-list">
-              {services.map(([service, slug]) => <li key={service}><a href={`${sitePath('/services')}?category=${slug}`}><ChevronRight aria-hidden="true" />{service}</a></li>)}
+              {services.map(([service, slug]) => <li key={service}><a href={`/services?category=${slug}`}><ChevronRight aria-hidden="true" />{service}</a></li>)}
             </ul>
-            <a className="site-footer-view-all" href={sitePath('/services')}>View All Services <ArrowRight aria-hidden="true" /></a>
+            <a className="site-footer-view-all" href="/services">View All Services <ArrowRight aria-hidden="true" /></a>
           </nav>
 
           <nav className="site-footer-column site-footer-explore" aria-labelledby="footer-explore-title">
             <h2 id="footer-explore-title">Explore</h2>
             <ul className="site-footer-link-list">
-              {exploreLinks.map(({ label, href }) => <li key={label}><a href={sitePath(href)}><ChevronRight aria-hidden="true" />{label}</a></li>)}
+              {exploreLinks.map(({ label, href }) => <li key={label}><a href={href}><ChevronRight aria-hidden="true" />{label}</a></li>)}
             </ul>
           </nav>
 
@@ -74,7 +73,7 @@ export default function Footer() {
             <h2>Support &amp; Contact</h2>
             <nav aria-label="Legal">
               <ul className="site-footer-link-list">
-                {legalLinks.map(({ label, href }) => <li key={label}><a href={sitePath(href)}><ChevronRight aria-hidden="true" />{label}</a></li>)}
+                {legalLinks.map(({ label, href }) => <li key={label}><a href={href}><ChevronRight aria-hidden="true" />{label}</a></li>)}
               </ul>
             </nav>
             <div className="site-footer-support-divider" />

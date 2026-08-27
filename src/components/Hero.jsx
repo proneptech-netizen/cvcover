@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { BriefcaseBusiness, FileText, Globe2, LockKeyhole, MessageCircle, ShieldCheck, Star } from 'lucide-react'
 import FeatureItem from './FeatureItem.jsx'
 
@@ -13,7 +12,7 @@ export default function Hero() {
           <h1>Professional Documents.<span>Better Opportunities.</span></h1>
           <p className="hero-description">ATS-friendly CVs, cover letters, study and visa documents, and online application support—professionally prepared for your goals.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href={sitePath('/services')}><BriefcaseBusiness aria-hidden="true" />Explore Services</a>
+            <a className="button button-primary" href="/services"><BriefcaseBusiness aria-hidden="true" />Explore Services</a>
             <a className="button button-outline" href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" />Chat on WhatsApp</a>
           </div>
           <div className="features" aria-label="Service highlights">
@@ -30,7 +29,7 @@ export default function Hero() {
                   <span className="decor-circle circle-one" /><span className="decor-circle circle-two" /><span className="decor-ring ring-one" /><span className="decor-ring ring-two" />
                   <span className="dot-grid" />
                 </div>
-                <img className="founder-photo" src={sitePath('/assets/Yubraj_Timsina_Transparent.png')} alt="Yubraj Timsina, founder of CV and Cover Letter Nepal" width="1132" height="1389" fetchPriority="high" decoding="async" />
+                <img className="founder-photo" src="/assets/Yubraj_Timsina_Transparent.png" alt="Yubraj Timsina, founder of CV and Cover Letter Nepal" width="1132" height="1389" decoding="async" fetchPriority="high" />
               </div>
             </div>
             <div className="specialist-info">

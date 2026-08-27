@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "test:bullet": "node scripts/test-bullet-improver.mjs",
-    "preview": "vite preview",
-    "postbuild": "node scripts/prepare-pages.mjs"
+    "test:pricing": "node scripts/test-service-pricing.mjs",
+    "test": "npm run test:bullet && npm run test:pricing",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",

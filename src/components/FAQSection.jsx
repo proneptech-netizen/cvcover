@@ -3,7 +3,7 @@ import { MessageCircle, Minus, Plus, Search } from 'lucide-react'
 
 const categories = ['All Questions', 'General Services', 'Quotes & Payments', 'Documents & Security', 'CV & Career', 'Study & Visa', 'Government & EPS', 'Travel', 'Delivery & Revisions', 'Privacy']
 
-export const faqs = [
+const faqs = [
   {
     id: 'services-provided',
     category: 'General Services',
@@ -57,6 +57,30 @@ export const faqs = [
     category: 'CV & Career',
     question: 'Do you prepare CVs for different countries?',
     answer: 'Yes. We prepare destination-specific CVs and resumes for countries and regions including Australia, Canada, the United Kingdom, the United States, Europe and the Gulf region, based on the client’s goals and requirements.',
+  },
+  {
+    id: 'cabin-crew-no-experience',
+    category: 'CV & Career',
+    question: 'Do you create Cabin Crew CVs for candidates with no previous cabin crew experience?',
+    answer: 'Yes. We can professionally present relevant customer service, hospitality, communication, grooming, swimming and cabin crew training experience without adding false or misleading information.',
+  },
+  {
+    id: 'cabin-crew-airline-tailoring',
+    category: 'CV & Career',
+    question: 'Can you tailor my CV for a specific airline?',
+    answer: 'Yes. If you provide the airline name or vacancy details, we can tailor your CV and cover letter to the role’s stated requirements.',
+  },
+  {
+    id: 'cabin-crew-pricing',
+    category: 'CV & Career',
+    question: 'Is there a separate charge for a Cabin Crew CV?',
+    answer: 'No. Cabin Crew CVs and cover letters follow our standard CV and cover letter pricing. A Cabin Crew CV costs NPR 499 for Standard delivery, NPR 599 for Priority delivery and NPR 699 for Express delivery.',
+  },
+  {
+    id: 'cabin-crew-no-guarantee',
+    category: 'CV & Career',
+    question: 'Do you guarantee an interview or Cabin Crew job?',
+    answer: 'No. We professionally prepare your application documents, but all shortlisting, interview, selection and employment decisions are made entirely by the airline or employer.',
   },
   {
     id: 'study-visa-documents',

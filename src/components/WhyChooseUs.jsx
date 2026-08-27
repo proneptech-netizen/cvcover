@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { Clock3, FileCheck2, MessagesSquare, ShieldCheck } from 'lucide-react'
 
 const features = [
@@ -48,7 +47,7 @@ export default function WhyChooseUs() {
         <aside className="support-panel" aria-label="Direct professional support statistics">
           <div className="support-panel-decoration" aria-hidden="true" />
           <div className="support-panel-header">
-            <img src={sitePath('/assets/Yubraj_Timsina.png')} alt="Yubraj Timsina, document specialist" width="1132" height="1389" loading="lazy" decoding="async" />
+            <img src="/assets/Yubraj_Timsina.png" alt="Yubraj Timsina, document specialist" width="1132" height="1389" loading="lazy" decoding="async" />
             <div><h3>Direct Professional Support</h3><p>Work directly with a document specialist.</p></div>
           </div>
 

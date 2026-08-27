@@ -142,7 +142,7 @@ export default function GlobalDocumentSupport() {
           </div>
 
           <div className="destination-image">
-            <img src={activeDestination.image} alt={activeDestination.alt} loading={activeIndex === 0 ? 'eager' : 'lazy'} decoding="async" />
+            <img src={activeDestination.image} alt={activeDestination.alt} loading={activeIndex === 0 ? 'eager' : 'lazy'} />
             <span><MapPin aria-hidden="true" />{activeDestination.location}</span>
           </div>
         </div>

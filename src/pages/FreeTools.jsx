@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   AlertCircle, ArrowRight, BarChart3, Check, CheckCircle2, ClipboardCheck, Copy,
@@ -199,16 +198,16 @@ export default function FreeTools() {
   const initial = useMemo(() => new URLSearchParams(window.location.search).get('tool'), [])
   const [active, setActive] = useState(enabledTools.some(tool => tool.id === initial) ? initial : 'ats')
   useEffect(() => {
-    if (initial === 'bullets') window.history.replaceState({}, '', `${sitePath('/free-tools')}?tool=ats`)
+    if (initial === 'bullets') window.history.replaceState({}, '', '/free-tools?tool=ats')
     const onPopState = () => {
       const tool = new URLSearchParams(window.location.search).get('tool')
-      if (tool === 'bullets') { window.history.replaceState({}, '', `${sitePath('/free-tools')}?tool=ats`); setActive('ats') }
+      if (tool === 'bullets') { window.history.replaceState({}, '', '/free-tools?tool=ats'); setActive('ats') }
       else if (enabledTools.some(item => item.id === tool)) setActive(tool)
     }
     window.addEventListener('popstate', onPopState)
     return () => window.removeEventListener('popstate', onPopState)
   }, [])
-  const selectTool = id => { setActive(id); window.history.replaceState({}, '', `${sitePath('/free-tools')}?tool=${id}`); window.requestAnimationFrame(() => document.getElementById('free-tools-workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' })) }
+  const selectTool = id => { setActive(id); window.history.replaceState({}, '', `/free-tools?tool=${id}`); window.requestAnimationFrame(() => document.getElementById('free-tools-workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' })) }
   return <main className="free-tools-page-main">
     <section className="free-tools-hero" aria-labelledby="free-tools-title"><div className="free-tools-hero-content"><span>FREE RESOURCES</span><h1 id="free-tools-title">Free CV Tools &amp; Analyzers</h1><p>Practical browser-based tools to help you review, improve and strengthen your CV before applying.</p></div></section>
     <ServiceQuoteEstimator />

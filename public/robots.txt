@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cvandcoverletternepal.com/sitemap.xml
+Sitemap: https://www.cvandcoverletternepal.com/sitemap.xml

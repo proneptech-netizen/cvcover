@@ -22,13 +22,11 @@ import ServiceDisclaimer from './pages/ServiceDisclaimer.jsx'
 import FloatingWhatsApp from './components/FloatingWhatsApp.jsx'
 import useViewportReveal from './hooks/useViewportReveal.js'
 import SEO from './components/SEO.jsx'
-import { faqs } from './components/FAQSection.jsx'
-import { routePath } from './utils/sitePath.js'
 
 if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'
 
 export default function App() {
-  const path = routePath()
+  const path = window.location.pathname.replace(/\/+$/, '') || '/'
   const isAboutPage = path === '/about'
   const isServicesPage = path === '/services'
   const isFreeToolsPage = path === '/free-tools'
@@ -60,5 +58,5 @@ export default function App() {
     }
   }, [isAboutPage, isServicesPage, isFreeToolsPage, isCareersPage, isContactPage, isPrivacyPage, isTermsPage, isDisclaimerPage])
 
-  return <><SEO path={path} faqs={path === '/' ? faqs : []} /><Header />{isAboutPage ? <About /> : isServicesPage ? <Services /> : isFreeToolsPage ? <FreeTools /> : isCareersPage ? <Careers /> : isContactPage ? <Contact /> : isPrivacyPage ? <PrivacyPolicy /> : isTermsPage ? <TermsAndConditions /> : isDisclaimerPage ? <ServiceDisclaimer /> : <main><Hero /><ServicesOverview /><WhoWeServe /><WhyChooseUs /><HowItWorks /><PricingPackages /><Testimonials /><GlobalDocumentSupport /><FAQSection /><FinalCTA /></main>}<Footer /><FloatingWhatsApp /></>
+  return <><SEO path={path} /><Header />{isAboutPage ? <About /> : isServicesPage ? <Services /> : isFreeToolsPage ? <FreeTools /> : isCareersPage ? <Careers /> : isContactPage ? <Contact /> : isPrivacyPage ? <PrivacyPolicy /> : isTermsPage ? <TermsAndConditions /> : isDisclaimerPage ? <ServiceDisclaimer /> : <main><Hero /><ServicesOverview /><WhoWeServe /><WhyChooseUs /><HowItWorks /><PricingPackages /><Testimonials /><GlobalDocumentSupport /><FAQSection /><FinalCTA /></main>}<Footer /><FloatingWhatsApp /></>
 }

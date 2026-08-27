@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import {
   BriefcaseBusiness,
   ClipboardList,
@@ -13,7 +12,7 @@ import {
 const services = [
   {
     title: 'CV & Career Documents',
-    description: 'ATS-friendly CVs, professional resumes, cover letters and international CV support.',
+    description: 'Professional CVs and cover letters for local and international opportunities, including cabin crew, hospitality and customer service roles.',
     icon: FileText,
     color: '#087e8c',
     background: '#e7f3f3',
@@ -95,7 +94,7 @@ export default function ServicesOverview() {
               </span>
               <h3>{title}</h3>
               <p>{description}</p>
-              <a href={`${sitePath('/services')}?category=${slug}`} aria-label={`View services for ${title}`}>View Services <span aria-hidden="true">→</span></a>
+              <a href={`/services?category=${slug}`} aria-label={`View services for ${title}`}>View Services <span aria-hidden="true">→</span></a>
             </article>
           ))}
         </div>

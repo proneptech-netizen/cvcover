@@ -4,6 +4,11 @@ import {
   GraduationCap, Info, Landmark, LayoutGrid, MessageCircle, Plane, ReceiptText,
   Rocket, Star, Zap,
 } from 'lucide-react'
+import {
+  buildQuoteMessage, CABIN_CREW_PRICING, CABIN_CREW_SERVICE_NAMES,
+  CV_AND_COVER_LETTER_PRICING, isCabinCrewService, money,
+  STANDARD_COVER_LETTER_PRICING, STANDARD_CV_PRICING, STANDARD_CV_REVIEW_PRICING,
+} from '../utils/servicePricing.js'
 
 const fixed = (standard, priority, express) => ({ standard, priority, express })
 const custom = null
@@ -12,17 +17,18 @@ export const estimatorCategories = [
   {
     id: 'cv-career', label: 'CV & Career Documents', icon: LayoutGrid,
     services: [
-      ['ATS-Friendly CV / Resume', fixed(499, 599, 699)],
-      ['Fresher / Graduate CV', fixed(499, 599, 699)],
-      ['Professional / Experienced CV', fixed(499, 599, 699)],
-      ['International CV', fixed(499, 599, 699)],
+      ['ATS-Friendly CV / Resume', STANDARD_CV_PRICING],
+      ['Fresher / Graduate CV', STANDARD_CV_PRICING],
+      ['Professional / Experienced CV', STANDARD_CV_PRICING],
+      ['International CV', STANDARD_CV_PRICING],
       ['Academic & Research CV', fixed(699, 799, 899)],
       ['Career Change CV', fixed(699, 799, 899)],
-      ['Job-Specific Cover Letter', fixed(499, 599, 699)],
-      ['Master / General Cover Letter', fixed(499, 599, 699)],
-      ['CV Review / Rewrite / Formatting', fixed(499, 599, 699)],
+      ['Job-Specific Cover Letter', STANDARD_COVER_LETTER_PRICING],
+      ['Master / General Cover Letter', STANDARD_COVER_LETTER_PRICING],
+      ['CV Review / Rewrite / Formatting', STANDARD_CV_REVIEW_PRICING],
       ['Multilingual CV Writing', fixed(699, 799, 899)],
-      ['Any CV + Cover Letter', fixed(899, 999, 1199)],
+      ['Any CV + Cover Letter', CV_AND_COVER_LETTER_PRICING],
+      ...Object.entries(CABIN_CREW_PRICING).filter(([name]) => name !== CABIN_CREW_SERVICE_NAMES.package),
     ],
   },
   {
@@ -165,12 +171,14 @@ function EstimatorDropdown({ id, label, placeholder, value, options, onChange, d
   </div>
 }
 
-const money = value => `NPR ${value.toLocaleString('en-US')}`
-
 export default function ServiceQuoteEstimator() {
-  const [categoryId, setCategoryId] = useState('')
-  const [serviceName, setServiceName] = useState('')
-  const [deliveryId, setDeliveryId] = useState('')
+  const initialParams = new URLSearchParams(window.location.search)
+  const initialCategory = estimatorCategories.some(item => item.id === initialParams.get('category')) ? initialParams.get('category') : ''
+  const initialService = estimatorCategories.find(item => item.id === initialCategory)?.services.some(([name]) => name === initialParams.get('service')) ? initialParams.get('service') : ''
+  const [categoryId, setCategoryId] = useState(initialCategory)
+  const [serviceName, setServiceName] = useState(initialService)
+  const [deliveryId, setDeliveryId] = useState(initialService ? 'standard' : '')
+  const [targetAirline, setTargetAirline] = useState('')
   const category = estimatorCategories.find(item => item.id === categoryId)
   const serviceTuple = category?.services.find(([name]) => name === serviceName)
   const prices = serviceTuple?.[1]
@@ -178,27 +186,28 @@ export default function ServiceQuoteEstimator() {
   const delivery = deliveryOptions.find(item => item.id === deliveryId)
   const price = prices && delivery ? prices[delivery.id] : null
   const complete = isCustom || price !== null
+  const cabinCrewSelected = isCabinCrewService(serviceName)
 
   const selectCategory = id => {
     setCategoryId(id)
     setServiceName('')
     setDeliveryId('')
+    setTargetAirline('')
   }
   const selectService = name => {
     const selectedPrices = category?.services.find(([service]) => service === name)?.[1]
     setServiceName(name)
     setDeliveryId(selectedPrices === null ? '' : 'standard')
+    if (!isCabinCrewService(name)) setTargetAirline('')
   }
 
-  const message = isCustom
-    ? `Hello, I would like to request a custom quotation.\n\nCategory: ${category.label}\nService: ${serviceName}\nPricing: Custom Pricing\nProcessing Time: Varies by Service\n\nPlease review my requirements and provide the final price and estimated completion time.`
-    : complete ? `Hello, I would like to continue with this service.\n\nCategory: ${category.label}\nService: ${serviceName}\nDelivery: ${delivery.label}\nEstimated Time: ${delivery.time}\nEstimated Price: ${money(price)}\n\nPlease confirm the requirements, final price and availability before work begins.` : ''
+  const message = complete ? buildQuoteMessage({ category: category.label, service: serviceName, delivery, price, targetAirline, custom: isCustom }) : ''
   const whatsappUrl = complete ? `https://wa.me/9779862989407?text=${encodeURIComponent(message)}` : ''
 
   const categoryOptions = estimatorCategories.map(({ id, label, icon }) => ({ id, label, icon }))
   const serviceOptions = (category?.services || []).map(([name]) => ({ id: name, label: name }))
 
-  return <section className="service-estimator-section" aria-labelledby="service-estimator-title">
+  return <section className="service-estimator-section" id="service-estimator" aria-labelledby="service-estimator-title">
     <header className="service-estimator-header">
       <span>INSTANT PRICING</span>
       <h2 id="service-estimator-title">Instant Service Quote Estimator</h2>
@@ -208,6 +217,10 @@ export default function ServiceQuoteEstimator() {
       <div className="service-estimator-form-panel">
         <EstimatorDropdown id="service-estimator-category" label="1. Select a Service Category" placeholder="Choose a service category" value={categoryId} options={categoryOptions} onChange={selectCategory} />
         <EstimatorDropdown id="service-estimator-service" label="2. Select a Specific Service" placeholder={category ? `Choose a ${category.label} service` : 'Choose a specific service'} value={serviceName} options={serviceOptions} onChange={selectService} disabled={!category} />
+        {cabinCrewSelected && <div className="service-estimator-field">
+          <label htmlFor="service-estimator-target-airline">Target Airline or Vacancy</label>
+          <input id="service-estimator-target-airline" className="service-estimator-input" type="text" value={targetAirline} onChange={(event) => setTargetAirline(event.target.value)} placeholder="Example: Emirates Cabin Crew, Qatar Airways or General Cabin Crew Application" />
+        </div>}
         {!isCustom && <>
           <EstimatorDropdown id="service-estimator-delivery" label="3. Choose Delivery Speed" placeholder="Choose a delivery option" value={deliveryId} options={deliveryOptions} onChange={setDeliveryId} disabled={!serviceTuple} />
           <p className="service-estimator-delivery-note">Delivery time begins after payment and receipt of all required information. Timelines may vary depending on workload, document complexity and client response time. Express delivery is subject to availability.</p>

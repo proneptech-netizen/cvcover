@@ -1,4 +1,4 @@
-import { sitePath } from '../utils/sitePath.js'
+import { useEffect } from 'react'
 
 const sections = [
   {
@@ -39,7 +39,7 @@ const sections = [
   },
   {
     title: 'CV and Career Documents',
-    paragraphs: ['CVs, cover letters, Europass documents and other career materials are prepared to present the client’s genuine information clearly and professionally.', 'Document preparation does not guarantee:'],
+    paragraphs: ['CVs, cover letters, Europass documents and other career materials are prepared to present the client’s genuine information clearly and professionally.', 'We provide professional document-writing and application-support services only. We do not represent any airline, recruitment agency or employer, and we do not guarantee interviews, employment or selection outcomes.', 'Document preparation does not guarantee:'],
     list: ['Employment.', 'Interview selection.', 'Employer acceptance.', 'Promotion.', 'Salary level.', 'Applicant-tracking-system performance.', 'Any particular recruitment outcome.'],
     after: ['Recruitment decisions remain entirely under the control of employers and recruitment organisations.'],
   },
@@ -150,8 +150,8 @@ const slugify = (title) => title.toLowerCase().replace(/&/g, 'and').replace(/[^a
 function LegalText({ children }) {
   const pattern = /(Terms and Conditions|Privacy Policy)/g
   return children.split(pattern).map((part, index) => {
-    if (part === 'Terms and Conditions') return <a href={sitePath('/terms-and-conditions')} key={`${part}-${index}`}>{part}</a>
-    if (part === 'Privacy Policy') return <a href={sitePath('/privacy-policy')} key={`${part}-${index}`}>{part}</a>
+    if (part === 'Terms and Conditions') return <a href="/terms-and-conditions" key={`${part}-${index}`}>{part}</a>
+    if (part === 'Privacy Policy') return <a href="/privacy-policy" key={`${part}-${index}`}>{part}</a>
     return <span key={`${part}-${index}`}>{part}</span>
   })
 }
@@ -166,6 +166,12 @@ function LegalList({ items = [] }) {
 }
 
 export default function ServiceDisclaimer() {
+  useEffect(() => {
+    const previousTitle = document.title
+    document.title = 'Service Disclaimer | CV & Cover Letter Nepal'
+    return () => { document.title = previousTitle }
+  }, [])
+
   return (
     <main className="terms-page service-disclaimer-page">
       <section className="terms-hero" aria-labelledby="service-disclaimer-title">

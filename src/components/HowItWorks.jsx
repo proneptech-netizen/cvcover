@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { CreditCard, FileCheck2, ListChecks, BadgeCheck, ShieldCheck } from 'lucide-react'
 
 const steps = [
@@ -66,7 +65,7 @@ export default function HowItWorks() {
 
         <div className="process-actions">
           <a className="process-button process-button-primary" href={quoteUrl} target="_blank" rel="noopener noreferrer">Get a Quote</a>
-          <a className="process-button process-button-secondary" href={sitePath('/services')}>Explore Services</a>
+          <a className="process-button process-button-secondary" href="/services">Explore Services</a>
         </div>
       </div>
     </section>

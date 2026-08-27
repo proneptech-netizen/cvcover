@@ -1,9 +1,14 @@
-import { sitePath } from '../utils/sitePath.js'
 import { CheckCircle2, FileLock2, Send } from 'lucide-react'
 import { useState } from 'react'
+import { CABIN_CREW_SERVICE_NAMES, isCabinCrewService } from '../utils/servicePricing.js'
 
 const services = [
   'CV & Career Documents',
+  CABIN_CREW_SERVICE_NAMES.cv,
+  CABIN_CREW_SERVICE_NAMES.coverLetter,
+  CABIN_CREW_SERVICE_NAMES.combination,
+  CABIN_CREW_SERVICE_NAMES.review,
+  CABIN_CREW_SERVICE_NAMES.airlineCoverLetter,
   'Europass Services',
   'Study & Visa Documents',
   'Visa Appeal & Reconsideration Letter',
@@ -16,7 +21,7 @@ const services = [
   'Other Services',
 ]
 
-const initialValues = { name: '', phone: '', email: '', date: '', service: '', message: '', consent: false }
+const initialValues = { name: '', phone: '', email: '', date: '', service: '', targetAirline: '', message: '', consent: false }
 
 export default function ContactEnquiry() {
   const [values, setValues] = useState(initialValues)
@@ -24,7 +29,11 @@ export default function ContactEnquiry() {
 
   const update = event => {
     const { name, value, checked, type } = event.target
-    setValues(current => ({ ...current, [name]: type === 'checkbox' ? checked : value }))
+    setValues(current => ({
+      ...current,
+      [name]: type === 'checkbox' ? checked : value,
+      ...(name === 'service' && !isCabinCrewService(value) ? { targetAirline: '' } : {}),
+    }))
     if (errors[name]) setErrors(current => ({ ...current, [name]: '' }))
   }
 
@@ -49,6 +58,7 @@ WhatsApp Number: ${values.phone.trim()}
 Email Address: ${values.email.trim() || 'Not provided'}
 Preferred Completion Date: ${values.date || 'Not specified'}
 Service Needed: ${values.service}
+${isCabinCrewService(values.service) && values.targetAirline.trim() ? `Target Airline or Vacancy: ${values.targetAirline.trim()}\n` : ''}
 
 Requirement:
 ${values.message.trim()}
@@ -113,6 +123,10 @@ I have reviewed and agreed to the Privacy Policy and Terms & Conditions.`
               </select>
               {errors.service && <span className="contact-enquiry-error" id="contact-enquiry-service-error" role="alert">{errors.service}</span>}
             </div>
+            {isCabinCrewService(values.service) && <div className="contact-enquiry-field contact-enquiry-field-wide">
+              <label htmlFor="contact-enquiry-target-airline">Target Airline or Vacancy</label>
+              <input id="contact-enquiry-target-airline" name="targetAirline" type="text" value={values.targetAirline} onChange={update} placeholder="Example: Emirates Cabin Crew, Qatar Airways or General Cabin Crew Application" />
+            </div>}
             <div className="contact-enquiry-field contact-enquiry-field-wide">
               <label htmlFor="contact-enquiry-message">Your Message *</label>
               <textarea id="contact-enquiry-message" name="message" value={values.message} onChange={update} placeholder="Briefly describe your requirements..." rows="4" required {...errorProps('message')} />
@@ -121,7 +135,7 @@ I have reviewed and agreed to the Privacy Policy and Terms & Conditions.`
           </div>
           <div className="contact-enquiry-consent">
             <input id="contact-enquiry-consent" name="consent" type="checkbox" checked={values.consent} onChange={update} required {...errorProps('consent')} />
-            <label htmlFor="contact-enquiry-consent">I have read and agree to the <a href={sitePath('/privacy-policy')}>Privacy Policy</a> and <a href={sitePath('/terms-and-conditions')}>Terms &amp; Conditions</a>.</label>
+            <label htmlFor="contact-enquiry-consent">I have read and agree to the <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions">Terms &amp; Conditions</a>.</label>
           </div>
           {errors.consent && <span className="contact-enquiry-error contact-enquiry-consent-error" id="contact-enquiry-consent-error" role="alert">{errors.consent}</span>}
           <button className="contact-enquiry-submit" type="submit"><Send aria-hidden="true" />Continue on WhatsApp</button>

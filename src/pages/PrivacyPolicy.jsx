@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Info } from 'lucide-react'
 
 const sections = [
@@ -182,6 +183,12 @@ function PolicySection({ section, index }) {
 }
 
 export default function PrivacyPolicy() {
+  useEffect(() => {
+    const previousTitle = document.title
+    document.title = 'Privacy Policy | CV & Cover Letter Nepal'
+    return () => { document.title = previousTitle }
+  }, [])
+
   return <main className="terms-page privacy-legal-page">
     <section className="terms-hero" aria-labelledby="privacy-page-title">
       <div className="terms-hero-content">

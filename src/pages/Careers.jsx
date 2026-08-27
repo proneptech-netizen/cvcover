@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { ArrowRight, BadgeDollarSign, CalendarDays, Check, CheckCircle2, FileLock2, FileText, Laptop, ListChecks, Lock, Mail, MessageCircle, Scale, ShieldCheck, Users } from 'lucide-react'
 
 const careersEmailUrl = 'mailto:cvandcoverletternepal@gmail.com?subject=Career%20Application%20-%20CV%20Submission'
@@ -133,7 +132,7 @@ export default function Careers() {
             <ul className="careers-recruitment-checks">
               {checks.map(item => <li key={item}><Check aria-hidden="true" /><span>{item}</span></li>)}
             </ul>
-            {privacyLink && <a className="careers-recruitment-privacy-link" href={sitePath('/privacy-policy')}>Read Our Privacy Policy <ArrowRight aria-hidden="true" /></a>}
+            {privacyLink && <a className="careers-recruitment-privacy-link" href="/privacy-policy/">Read Our Privacy Policy <ArrowRight aria-hidden="true" /></a>}
           </article>)}
         </div>
       </div>
@@ -166,7 +165,7 @@ export default function Careers() {
           </ul>
         </aside>
       </div>
-      <div className="careers-applicant-notice"><Lock aria-hidden="true" /><div><strong>Applicant Safety &amp; Privacy</strong><ul><li>No recruitment fee.</li><li>Do not send citizenship, passport, bank details, passwords or OTP codes.</li><li>Submitting a CV does not guarantee a response, interview or employment offer.</li></ul><a href={sitePath('/privacy-policy')}>Read Our Privacy Policy <ArrowRight aria-hidden="true" /></a></div></div>
+      <div className="careers-applicant-notice"><Lock aria-hidden="true" /><div><strong>Applicant Safety &amp; Privacy</strong><ul><li>No recruitment fee.</li><li>Do not send citizenship, passport, bank details, passwords or OTP codes.</li><li>Submitting a CV does not guarantee a response, interview or employment offer.</li></ul><a href="/privacy-policy">Read Our Privacy Policy <ArrowRight aria-hidden="true" /></a></div></div>
       <p className="careers-join-team-note">Current working arrangements are online. Vacancy announcements will state any role-specific location or schedule.</p>
     </section>
   </main>

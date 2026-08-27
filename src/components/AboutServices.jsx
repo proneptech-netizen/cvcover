@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import {
   ArrowRight,
   BadgeDollarSign,
@@ -86,7 +85,7 @@ export default function AboutServices() {
               <span className={`about-services-icon about-services-icon-${accent}`} aria-hidden="true"><Icon /></span>
               <h3>{title}</h3>
               <p>{description}</p>
-              <a href={`${sitePath('/services')}?category=${slug}`} aria-label={`Explore ${title}`}>
+              <a href={`/services?category=${slug}`} aria-label={`Explore ${title}`}>
                 <span>Explore Services</span>
                 <ArrowRight aria-hidden="true" />
               </a>

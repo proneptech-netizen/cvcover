@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { useEffect, useRef, useState } from 'react'
 import {
   Award, BadgeCheck, BookOpen, BookOpenCheck, BriefcaseBusiness, Building, Building2,
@@ -9,12 +8,15 @@ import {
   Shield, ShieldCheck, ShieldUser, SquarePen, Star, TicketsPlane, UserCog, UserRoundCheck,
   UserRoundCog, UsersRound,
 } from 'lucide-react'
+import {
+  CABIN_CREW_PRICING, CABIN_CREW_SERVICE_NAMES,
+} from '../utils/servicePricing.js'
 
 const quoteUrl = 'https://wa.me/9779862989407?text=Hello%2C%20I%20would%20like%20to%20request%20a%20quotation%20for%20a%20service.'
 
 const categories = [
   {
-    slug: 'cv-career', tab: 'CV & Career', number: '01', title: 'CV & Career Documents', count: '10 specialised services', icon: FileText,
+    slug: 'cv-career', tab: 'CV & Career', number: '01', title: 'CV & Career Documents', count: '15 specialised services', icon: FileText,
     description: 'Professional CVs and cover letters tailored to your career stage, target role and destination.',
     services: [
       ['ATS-Friendly CV / Resume', 'Optimised for applicant tracking systems to improve shortlisting.', FileUser],
@@ -28,6 +30,18 @@ const categories = [
       ['CV Review, Rewrite & Formatting', 'Improve clarity, structure and presentation for better results.', ListChecks],
       ['Multilingual CV Support', 'CVs in multiple languages to suit your target opportunities.', Languages],
     ],
+    specialisedGroup: {
+      title: 'Cabin Crew / Air Hostess CV & Cover Letter',
+      description: 'Professionally written, ATS-friendly CVs and cover letters for cabin crew, air hostess and airline customer service roles. Each document is tailored to the candidate’s genuine education, training, experience, skills and target role.',
+      note: 'Cabin Crew services follow our standard CV and cover letter pricing. No additional industry-specific fee applies.',
+      services: [
+        [CABIN_CREW_SERVICE_NAMES.cv, 'An ATS-friendly Cabin Crew CV in Nepal tailored to genuine skills, training and target roles.', PlaneTakeoff, CABIN_CREW_PRICING[CABIN_CREW_SERVICE_NAMES.cv]],
+        [CABIN_CREW_SERVICE_NAMES.coverLetter, 'A focused Cabin Crew cover letter aligned with the candidate’s genuine background and target vacancy.', Mail, CABIN_CREW_PRICING[CABIN_CREW_SERVICE_NAMES.coverLetter]],
+        [CABIN_CREW_SERVICE_NAMES.package, 'A coordinated CV and cover letter package for cabin crew and airline customer service applications.', FileCheck2, CABIN_CREW_PRICING[CABIN_CREW_SERVICE_NAMES.package]],
+        [CABIN_CREW_SERVICE_NAMES.review, 'Professional review, rewrite and formatting support for an existing Cabin Crew or Air Hostess CV.', FileSearch, CABIN_CREW_PRICING[CABIN_CREW_SERVICE_NAMES.review]],
+        [CABIN_CREW_SERVICE_NAMES.airlineCoverLetter, 'A tailored letter using genuine information and the requirements stated in a specific airline vacancy.', Plane, CABIN_CREW_PRICING[CABIN_CREW_SERVICE_NAMES.airlineCoverLetter]],
+      ],
+    },
   },
   {
     slug: 'europass', tab: 'Europass', number: '02', title: 'Europass Services', count: '4 specialised services', icon: ContactRound,
@@ -213,7 +227,7 @@ export default function Services() {
 
   const selectCategory = (slug) => {
     if (slug === activeSlug) return
-    window.history.pushState({}, '', `${sitePath('/services')}?category=${slug}`)
+    window.history.pushState({}, '', `/services?category=${slug}`)
     setActiveSlug(slug)
   }
 
@@ -229,6 +243,11 @@ export default function Services() {
         <div className="services-page-container">
           <ServicesCategoryHeader category={activeCategory} />
           <ul className="services-page-grid">{activeCategory.services.map((service) => <ServiceCard service={service} key={service[0]} />)}</ul>
+          {activeCategory.specialisedGroup && <section className="services-page-specialised" aria-labelledby="cabin-crew-services-title">
+            <header><h3 id="cabin-crew-services-title">{activeCategory.specialisedGroup.title}</h3><p>{activeCategory.specialisedGroup.description}</p></header>
+            <ul className="services-page-grid">{activeCategory.specialisedGroup.services.map((service) => <ServiceCard service={service} key={service[0]} />)}</ul>
+            <p className="services-page-specialised-note"><Info aria-hidden="true" />{activeCategory.specialisedGroup.note}</p>
+          </section>}
           <ServicesActionArea category={activeCategory} />
           <ServicesDisclaimer text={activeCategory.disclaimer} note={activeCategory.note} />
         </div>

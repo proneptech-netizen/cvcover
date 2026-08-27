@@ -1,4 +1,3 @@
-import { sitePath } from '../utils/sitePath.js'
 import { CheckCircle, Quote } from 'lucide-react'
 import AboutServices from '../components/AboutServices.jsx'
 import WorkingPrinciples from '../components/WorkingPrinciples.jsx'
@@ -19,7 +18,7 @@ export default function About() {
           <h1 id="about-page-title">About CV &amp; Cover Letter Nepal</h1>
           <p>Professional online assistance for career documents, study and visa documents, applications and selected support services—available to clients worldwide.</p>
           <div className="about-page-hero-actions">
-            <a className="about-page-hero-button about-page-hero-button-primary" href={sitePath('/services')}>Explore Services</a>
+            <a className="about-page-hero-button about-page-hero-button-primary" href="/services">Explore Services</a>
             <a className="about-page-hero-button about-page-hero-button-secondary" href={quoteUrl} target="_blank" rel="noopener noreferrer">Get a Free Quote</a>
           </div>
         </div>
@@ -29,7 +28,7 @@ export default function About() {
         <div className="about-page-story-inner">
           <div className="about-page-portrait-card">
             <div className="about-page-portrait-decoration" aria-hidden="true" />
-            <img src={sitePath('/assets/Yubraj_Timsina_Transparent.png')} alt="Yubraj Timsina, Founder and Owner of CV & Cover Letter Nepal" width="1132" height="1389" decoding="async" />
+            <img src="/assets/Yubraj_Timsina_Transparent.png" alt="Yubraj Timsina, Founder and Owner of CV & Cover Letter Nepal" width="1132" height="1389" loading="lazy" decoding="async" />
             <div className="about-page-identity-card">
               <strong>Yubraj Timsina</strong>
               <span>Founder &amp; Owner</span>

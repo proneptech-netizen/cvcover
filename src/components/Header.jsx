@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { routePath, sitePath } from '../utils/sitePath.js'
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -19,14 +18,14 @@ function WhatsAppIcon() {
 export default function Header() {
   const [open, setOpen] = useState(false)
   const headerRef = useRef(null)
-  const currentPath = routePath()
+  const currentPath = window.location.pathname.replace(/\/+$/, '') || '/'
 
   const handleBrandClick = (event) => {
     setOpen(false)
     if (currentPath !== '/') return
 
     event.preventDefault()
-    if (window.location.search || window.location.hash) window.history.replaceState({}, '', sitePath('/'))
+    if (window.location.search || window.location.hash) window.history.replaceState({}, '', '/')
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }
 
@@ -52,13 +51,13 @@ export default function Header() {
   return (
     <header className="site-header" ref={headerRef}>
       <div className="header-inner">
-        <a className="brand" href={sitePath('/')} aria-label="CV and Cover Letter Nepal home" onClick={handleBrandClick}>
-          <img src={sitePath('/assets/cv-cover-letter-nepal-logo-transparent-tight.png')} alt="CV & Cover Letter Nepal logo" width="1101" height="721" decoding="async" />
+        <a className="brand" href="/" aria-label="CV and Cover Letter Nepal home" onClick={handleBrandClick}>
+          <img src="/assets/cv-cover-letter-nepal-logo-transparent-tight.png" alt="CV & Cover Letter Nepal logo" />
           <span className="brand-copy"><strong>CV &amp; Cover Letter</strong><span>Nepal <b aria-label="Nepal flag">🇳🇵</b></span></span>
         </a>
         <button className="menu-button" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-navigation" aria-label={open ? 'Close menu' : 'Open menu'}>{open ? <X /> : <Menu />}</button>
         <nav id="main-navigation" className={open ? 'main-nav open' : 'main-nav'} aria-label="Main navigation">
-          {navItems.map(({ label, href }) => <a key={label} className={(href === '/' && currentPath === '/') || (href !== '/' && href.startsWith('/') && currentPath === href) ? 'active' : ''} href={sitePath(href)} onClick={() => setOpen(false)}>{label}</a>)}
+          {navItems.map(({ label, href }) => <a key={label} className={(href === '/' && currentPath === '/') || (href !== '/' && href.startsWith('/') && currentPath === href) ? 'active' : ''} href={href} onClick={() => setOpen(false)}>{label}</a>)}
           <a className="mobile-nav-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}><WhatsAppIcon />Chat on WhatsApp</a>
         </nav>
         <a className="header-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Chat with CV & Cover Letter Nepal on WhatsApp"><WhatsAppIcon />WhatsApp</a>

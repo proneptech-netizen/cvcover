@@ -1,174 +1,152 @@
 import { useEffect } from 'react'
 
-const siteUrl = 'https://cvandcoverletternepal.com'
-const brand = 'CV & Cover Letter Nepal'
-const imageUrl = `${siteUrl}/assets/cv-cover-letter-nepal-logo-transparent-tight.png`
+const SITE_URL = 'https://www.cvandcoverletternepal.com'
+const BRAND = 'CV & Cover Letter Nepal'
+const SOCIAL_IMAGE = `${SITE_URL}/assets/cv-cover-letter-nepal-logo-transparent-tight.png`
 
 const pages = {
   '/': {
     title: 'CV & Cover Letter Nepal | Professional Document Support',
     description: 'Professional support for ATS-friendly CVs, cover letters, Europass documents, study and visa documents, online applications and selected services worldwide.',
-    name: 'Professional Document Support',
   },
   '/about': {
-    title: 'About CV & Cover Letter Nepal | Our Story',
-    description: 'Learn about CV & Cover Letter Nepal, our founder, working principles and personalised online document and application support for clients worldwide.',
-    name: `About ${brand}`,
+    title: 'About Us | CV & Cover Letter Nepal',
+    description: 'Learn about CV & Cover Letter Nepal and our practical, confidential approach to professional document and online application support worldwide.',
   },
   '/services': {
-    title: 'Document & Application Services | CV & Cover Letter Nepal',
-    description: 'Explore CV, cover letter, Europass, study, visa, government, EPS, travel and online application support tailored to your requirements.',
-    name: 'Document and Application Services',
+    title: 'Professional CV & Cover Letter Services in Nepal | Cabin Crew CV',
+    description: 'Get professional ATS-friendly CVs and cover letters for cabin crew, air hostess, hospitality and international job applications in Nepal, starting from NPR 499.',
   },
   '/free-tools': {
-    title: 'Free CV Tools & Analyzers | CV & Cover Letter Nepal',
-    description: 'Use free browser-based CV tools to check ATS readiness, improve bullet points and review your application checklist before applying for roles.',
-    name: 'Free CV Tools and Analyzers',
+    title: 'Free CV Tools & Analyzers | CV Nepal',
+    description: 'Use free browser-based tools to review ATS readiness, improve CV bullet points, compare a CV with a job and check formatting quality.',
   },
   '/careers': {
     title: 'Careers | CV & Cover Letter Nepal',
-    description: 'Explore career opportunities with CV & Cover Letter Nepal, learn about our fair recruitment process and submit your CV for future consideration.',
-    name: `Careers at ${brand}`,
+    description: 'View current and future career opportunities with CV & Cover Letter Nepal and learn how to submit your CV safely and professionally.',
   },
   '/contact': {
-    title: 'Contact CV & Cover Letter Nepal | Get Support',
-    description: 'Contact CV & Cover Letter Nepal by WhatsApp or email for document support, service enquiries and a clear quotation tailored to your needs.',
-    name: `Contact ${brand}`,
+    title: 'Contact CV & Cover Letter Nepal',
+    description: 'Contact CV & Cover Letter Nepal by WhatsApp or email for a clear quotation on professional document and online application support.',
   },
   '/privacy-policy': {
     title: 'Privacy Policy | CV & Cover Letter Nepal',
-    description: 'Read how CV & Cover Letter Nepal receives, uses, stores and protects personal information shared for website, document and career services.',
-    name: 'Privacy Policy',
+    description: 'Read how CV & Cover Letter Nepal collects, uses, protects and retains personal information provided for enquiries and document services.',
   },
   '/terms-and-conditions': {
     title: 'Terms & Conditions | CV & Cover Letter Nepal',
-    description: 'Read the terms governing quotations, payments, document preparation, revisions, delivery, cancellations and use of our online services.',
-    name: 'Terms and Conditions',
+    description: 'Read the terms governing quotations, payments, client responsibilities, revisions, delivery and use of CV & Cover Letter Nepal services.',
   },
   '/service-disclaimer': {
     title: 'Service Disclaimer | CV & Cover Letter Nepal',
-    description: 'Understand the scope and limitations of our document and application support, client responsibilities and third-party decisions and services.',
-    name: 'Service Disclaimer',
+    description: 'Understand the scope and limitations of professional document support provided by CV & Cover Letter Nepal before using our services.',
   },
 }
 
-const organization = {
-  '@type': 'Organization',
-  '@id': `${siteUrl}/#organization`,
-  name: brand,
-  url: siteUrl,
-  logo: {
-    '@type': 'ImageObject',
-    url: imageUrl,
-    width: 1101,
-    height: 721,
-  },
-  email: 'cvandcoverletternepal@gmail.com',
-  telephone: '+9779862989407',
-  areaServed: 'Worldwide',
-  sameAs: [
-    'https://www.facebook.com/people/Cv-Cover-Letter-Nepal/61555818296589/',
-    'https://www.instagram.com/cvandcoverletternepal/',
-  ],
-}
-
-function upsertMeta(selector, attributes) {
+function setMeta(selector, attributes) {
   let element = document.head.querySelector(selector)
   if (!element) {
     element = document.createElement('meta')
     document.head.appendChild(element)
   }
-  Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value))
+  Object.entries(attributes).forEach(([name, value]) => element.setAttribute(name, value))
 }
 
-export default function SEO({ path, faqs = [] }) {
+export default function SEO({ path }) {
   useEffect(() => {
     const page = pages[path] || pages['/']
-    const canonical = `${siteUrl}${path === '/' ? '/' : path}`
+    const canonicalUrl = `${SITE_URL}${path === '/' ? '/' : path}`
     document.title = page.title
 
-    upsertMeta('meta[name="description"]', { name: 'description', content: page.description })
-    upsertMeta('meta[name="robots"]', { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' })
-    upsertMeta('meta[property="og:title"]', { property: 'og:title', content: page.title })
-    upsertMeta('meta[property="og:description"]', { property: 'og:description', content: page.description })
-    upsertMeta('meta[property="og:url"]', { property: 'og:url', content: canonical })
-    upsertMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
-    upsertMeta('meta[property="og:image"]', { property: 'og:image', content: imageUrl })
-    upsertMeta('meta[property="og:image:alt"]', { property: 'og:image:alt', content: `${brand} logo` })
-    upsertMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: brand })
-    upsertMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
-    upsertMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: page.title })
-    upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: page.description })
-    upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: imageUrl })
+    setMeta('meta[name="description"]', { name: 'description', content: page.description })
+    setMeta('meta[name="robots"]', { name: 'robots', content: 'index, follow, max-image-preview:large' })
+    setMeta('meta[property="og:title"]', { property: 'og:title', content: page.title })
+    setMeta('meta[property="og:description"]', { property: 'og:description', content: page.description })
+    setMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
+    setMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
+    setMeta('meta[property="og:image"]', { property: 'og:image', content: SOCIAL_IMAGE })
+    setMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: BRAND })
+    setMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
+    setMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: page.title })
+    setMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: page.description })
+    setMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: SOCIAL_IMAGE })
 
-    let canonicalLink = document.head.querySelector('link[rel="canonical"]')
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link')
-      canonicalLink.rel = 'canonical'
-      document.head.appendChild(canonicalLink)
+    let canonical = document.head.querySelector('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.rel = 'canonical'
+      document.head.appendChild(canonical)
     }
-    canonicalLink.href = canonical
+    canonical.href = canonicalUrl
 
     const graph = [
-      organization,
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: BRAND,
+        url: `${SITE_URL}/`,
+        logo: SOCIAL_IMAGE,
+        email: 'cvandcoverletternepal@gmail.com',
+        telephone: '+9779862989407',
+        areaServed: 'Worldwide',
+        sameAs: [
+          'https://www.facebook.com/people/Cv-Cover-Letter-Nepal/61555818296589/',
+          'https://www.instagram.com/cvandcoverletternepal/',
+        ],
+      },
       {
         '@type': 'WebSite',
-        '@id': `${siteUrl}/#website`,
-        url: `${siteUrl}/`,
-        name: brand,
-        publisher: { '@id': `${siteUrl}/#organization` },
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: BRAND,
+        publisher: { '@id': `${SITE_URL}/#organization` },
         inLanguage: 'en',
       },
       {
         '@type': 'WebPage',
-        '@id': `${canonical}#webpage`,
-        url: canonical,
-        name: page.name,
+        '@id': `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: page.title,
         description: page.description,
-        isPartOf: { '@id': `${siteUrl}/#website` },
-        about: { '@id': `${siteUrl}/#organization` },
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        about: { '@id': `${SITE_URL}/#organization` },
         inLanguage: 'en',
       },
     ]
 
-    if (path !== '/') graph.push({
-      '@type': 'BreadcrumbList',
-      '@id': `${canonical}#breadcrumb`,
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
-        { '@type': 'ListItem', position: 2, name: page.name, item: canonical },
-      ],
-    })
-    if (path === '/services') graph.push({
-      '@type': 'Service',
-      '@id': `${canonical}#service`,
-      name: 'Professional document and application support',
-      description: page.description,
-      provider: { '@id': `${siteUrl}/#organization` },
-      areaServed: 'Worldwide',
-      url: canonical,
-    })
-    if (path === '/' && faqs.length) graph.push({
-      '@type': 'FAQPage',
-      '@id': `${canonical}#faq`,
-      mainEntity: faqs.map(({ question, answer }) => ({
-        '@type': 'Question',
-        name: question,
-        acceptedAnswer: { '@type': 'Answer', text: answer },
-      })),
-    })
+    if (path !== '/') {
+      graph.push({
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: page.title.split(' | ')[0], item: canonicalUrl },
+        ],
+      })
+    }
 
-    let script = document.getElementById('site-structured-data')
+    if (path === '/services') {
+      graph.push({
+        '@type': 'Service',
+        '@id': `${canonicalUrl}#service`,
+        name: 'Professional Document and Application Support',
+        description: page.description,
+        provider: { '@id': `${SITE_URL}/#organization` },
+        areaServed: 'Worldwide',
+        serviceType: 'ATS-friendly CV, Cabin Crew CV, cover letter, study, visa and online application document support',
+        url: canonicalUrl,
+      })
+    }
+
+    let script = document.head.querySelector('#website-structured-data')
     if (!script) {
       script = document.createElement('script')
-      script.id = 'site-structured-data'
+      script.id = 'website-structured-data'
       script.type = 'application/ld+json'
       document.head.appendChild(script)
     }
     script.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })
-  }, [path, faqs])
+  }, [path])
 
   return null
 }
-
-export { pages }
