@@ -31,7 +31,7 @@ export default function WhyChooseUs() {
       <div className="why-choose-container">
         <div className="why-choose-content">
           <span className="why-choose-label">Why Choose Us</span>
-          <h2 id="why-choose-us-title">Your Trusted Partner for<br />Professional Documents</h2>
+          <h2 id="why-choose-us-title">Your Trusted Partner for{' '}<br />Professional Documents</h2>
           <p className="why-choose-lead">We combine expertise, accuracy and personalised service to prepare professional documents tailored to your goals.</p>
 
           <div className="why-features">
