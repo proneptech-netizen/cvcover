@@ -1,6 +1,7 @@
-import { CheckCircle2, FileLock2, Send } from 'lucide-react'
+import { CheckCircle2, FileLock2, LoaderCircle, Send } from 'lucide-react'
 import { useState } from 'react'
 import { CABIN_CREW_SERVICE_NAMES, isCabinCrewService } from '../utils/servicePricing.js'
+import { submitEnquiry } from '../utils/enquiryApi.js'
 
 const services = [
   'CV & Career Documents',
@@ -26,6 +27,8 @@ const initialValues = { name: '', phone: '', email: '', date: '', service: '', t
 export default function ContactEnquiry() {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const update = event => {
     const { name, value, checked, type } = event.target
@@ -35,10 +38,12 @@ export default function ContactEnquiry() {
       ...(name === 'service' && !isCabinCrewService(value) ? { targetAirline: '' } : {}),
     }))
     if (errors[name]) setErrors(current => ({ ...current, [name]: '' }))
+    if (submitError) setSubmitError('')
   }
 
-  const submit = event => {
+  const submit = async event => {
     event.preventDefault()
+    if (submitting) return
     const nextErrors = {}
     if (!values.name.trim()) nextErrors.name = 'Enter your full name.'
     if (!values.phone.trim()) nextErrors.phone = 'Enter your WhatsApp number.'
@@ -64,11 +69,26 @@ Requirement:
 ${values.message.trim()}
 
 I have reviewed and agreed to the Privacy Policy and Terms & Conditions.`
-    const link = document.createElement('a')
-    link.href = `https://wa.me/9779862989407?text=${encodeURIComponent(message)}`
-    link.target = '_blank'
-    link.rel = 'noopener noreferrer'
-    link.click()
+    const whatsappUrl = `https://wa.me/9779862989407?text=${encodeURIComponent(message)}`
+    const whatsappWindow = window.open('about:blank', '_blank')
+
+    setSubmitting(true)
+    setSubmitError('')
+    try {
+      await submitEnquiry(values)
+      setValues(initialValues)
+      if (whatsappWindow) {
+        whatsappWindow.opener = null
+        whatsappWindow.location.replace(whatsappUrl)
+      } else {
+        window.location.assign(whatsappUrl)
+      }
+    } catch (error) {
+      whatsappWindow?.close()
+      setSubmitError(error.message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const errorProps = name => ({
@@ -138,8 +158,9 @@ I have reviewed and agreed to the Privacy Policy and Terms & Conditions.`
             <label htmlFor="contact-enquiry-consent">I have read and agree to the <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions">Terms &amp; Conditions</a>.</label>
           </div>
           {errors.consent && <span className="contact-enquiry-error contact-enquiry-consent-error" id="contact-enquiry-consent-error" role="alert">{errors.consent}</span>}
-          <button className="contact-enquiry-submit" type="submit"><Send aria-hidden="true" />Continue on WhatsApp</button>
-          <p className="contact-enquiry-submit-note">This opens WhatsApp with your enquiry details ready to review and send.</p>
+          {submitError && <p className="contact-enquiry-submit-error" role="alert">{submitError}</p>}
+          <button className="contact-enquiry-submit" type="submit" disabled={submitting}>{submitting ? <LoaderCircle className="contact-enquiry-spinner" aria-hidden="true" /> : <Send aria-hidden="true" />}{submitting ? 'Saving your enquiry…' : 'Continue on WhatsApp'}</button>
+          <p className="contact-enquiry-submit-note">Your enquiry is saved securely before WhatsApp opens with the details ready to review and send.</p>
         </form>
       </div>
     </section>
