@@ -1816,9 +1816,13 @@ h1 span { display: block; width: max-content; color: transparent; background: li
 .contact-enquiry-consent-error { margin-left: 30px; }
 .contact-enquiry-submit { width: 100%; min-height: 56px; margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 12px; color: #fff; background: linear-gradient(135deg,#087e88,#079aa5); border: 0; border-radius: 8px; font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; transition: transform .2s ease,box-shadow .2s ease; }
 .contact-enquiry-submit:hover { transform: translateY(-1px); box-shadow: 0 9px 20px rgba(6,124,136,.2); }
+.contact-enquiry-submit:disabled { cursor: wait; opacity: .72; transform: none; box-shadow: none; }
 .contact-enquiry-submit:focus-visible { outline: 3px solid rgba(8,126,140,.3); outline-offset: 3px; }
 .contact-enquiry-submit svg { width: 22px; height: 22px; }
+.contact-enquiry-spinner { animation: contact-enquiry-spin .8s linear infinite; }
+.contact-enquiry-submit-error { margin: 14px 0 -5px; padding: 10px 12px; color: #8b1f31; background: #fff1f3; border: 1px solid #f3c5cd; border-radius: 8px; font-size: 12px; line-height: 1.5; font-weight: 650; }
 .contact-enquiry-submit-note { margin: 10px 0 0; color: #607087; font-size: 11px; line-height: 1.5; text-align: center; }
+@keyframes contact-enquiry-spin { to { transform: rotate(360deg); } }
 .contact-enquiry-privacy-preview { padding: 25px 24px 34px; text-align: center; background: #fff; border-top: 1px solid #e4eaee; }
 .contact-enquiry-privacy-preview > span { min-height: 37px; padding: 0 20px; display: inline-flex; align-items: center; color: var(--teal); background: #e9f3f3; border-radius: 999px; font-size: 12px; line-height: 1; font-weight: 800; letter-spacing: 1.7px; text-transform: uppercase; }
 .contact-enquiry-privacy-preview h2 { margin: 15px auto 0; color: var(--navy); font-size: 28px; line-height: 1.3; letter-spacing: -.9px; font-weight: 800; }
