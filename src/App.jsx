@@ -19,6 +19,7 @@ import Contact from './pages/Contact.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import TermsAndConditions from './pages/TermsAndConditions.jsx'
 import ServiceDisclaimer from './pages/ServiceDisclaimer.jsx'
+import Admin from './pages/Admin.jsx'
 import FloatingWhatsApp from './components/FloatingWhatsApp.jsx'
 import useViewportReveal from './hooks/useViewportReveal.js'
 import SEO from './components/SEO.jsx'
@@ -35,6 +36,7 @@ export default function App() {
   const isPrivacyPage = path === '/privacy-policy'
   const isTermsPage = path === '/terms-and-conditions'
   const isDisclaimerPage = path === '/service-disclaimer'
+  const isAdminPage = path === '/admin'
   useViewportReveal(path)
 
   useEffect(() => {
@@ -57,6 +59,8 @@ export default function App() {
       window.removeEventListener('hashchange', scrollToHash)
     }
   }, [isAboutPage, isServicesPage, isFreeToolsPage, isCareersPage, isContactPage, isPrivacyPage, isTermsPage, isDisclaimerPage])
+
+  if (isAdminPage) return <Admin />
 
   return <><SEO path={path} /><Header />{isAboutPage ? <About /> : isServicesPage ? <Services /> : isFreeToolsPage ? <FreeTools /> : isCareersPage ? <Careers /> : isContactPage ? <Contact /> : isPrivacyPage ? <PrivacyPolicy /> : isTermsPage ? <TermsAndConditions /> : isDisclaimerPage ? <ServiceDisclaimer /> : <main><Hero /><ServicesOverview /><WhoWeServe /><WhyChooseUs /><HowItWorks /><PricingPackages /><Testimonials /><GlobalDocumentSupport /><FAQSection /><FinalCTA /></main>}<Footer /><FloatingWhatsApp /></>
 }
