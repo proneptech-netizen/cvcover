@@ -45,9 +45,9 @@ export const estimatorCategories = [
     services: [
       ['Statement of Purpose (SOP)', fixed(1999, 2299, 2499)],
       ['Genuine Statement (GS)', fixed(1999, 2299, 2499)],
-      ['Appeal / Reconsideration Letter', fixed(2000, 2300, 2500)],
-      ['Admission Essay', fixed(2000, 2300, 2500)],
-      ['Scholarship Essay', fixed(2000, 2300, 2500)],
+      ['Appeal / Reconsideration Letter', fixed(1999, 2299, 2499)],
+      ['Admission Essay', fixed(1999, 2299, 2499)],
+      ['Scholarship Essay', fixed(1999, 2299, 2499)],
       ['Motivation Letter', fixed(1499, 1799, 1999)],
       ['Study Plan', fixed(1999, 2299, 2499)],
       ['Study & Visa Cover Letter', fixed(1499, 1799, 1999)],
@@ -67,9 +67,9 @@ export const estimatorCategories = [
   {
     id: 'korea-eps', label: 'Korea & EPS Services', icon: Star,
     services: [
-      ['TOPIK Exam Online Form', fixed(2999, 2999, 2999)],
-      ['EPS-TOPIK Service Charge', fixed(499, 599, 699)],
-      ['EPS Form Preparation & Review', fixed(499, 599, 699)],
+      ['TOPIK Exam Online Form', custom],
+      ['EPS-TOPIK Service Charge', custom],
+      ['EPS Form Preparation & Review', custom],
       ['Korea Employment Support', custom],
     ],
   },
