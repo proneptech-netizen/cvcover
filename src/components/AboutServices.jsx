@@ -27,7 +27,7 @@ const services = [
   },
   {
     title: 'Study & Visa Documents',
-    description: 'Nepal NOC assistance, SOPs, admission and scholarship essays, study plans, visa letters and appeals.'
+    description: 'Nepal NOC assistance, SOPs, admission and scholarship essays, study plans, visa letters and appeals.',
     icon: GraduationCap,
     accent: 'orange',
     slug: 'study-visa',
