@@ -3,7 +3,7 @@ import { ArrowRight, ChevronRight, Globe2, Mail, Phone } from 'lucide-react'
 const whatsappUrl = 'https://wa.me/9779862989407'
 const services = [
   ['CV & Career Documents', 'cv-career'],
-  ['Study, Visa & NOC Services', 'study-visa'],
+  ['Study & Visa Documents', 'study-visa'],
   ['Government & Public Services', 'government'],
   ['Korea & EPS Services', 'korea-eps'],
   ['Travel & Booking Services', 'travel-booking'],
