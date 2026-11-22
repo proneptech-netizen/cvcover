@@ -28,7 +28,7 @@ export default function About() {
         <div className="about-page-story-inner">
           <div className="about-page-portrait-card">
             <div className="about-page-portrait-decoration" aria-hidden="true" />
-            <img src="/assets/Yubraj_Timsina_Transparent.png" alt="Yubraj Timsina, Founder and Owner of CV & Cover Letter Nepal" width="1132" height="1389" loading="lazy" decoding="async" />
+            <img src="/assets/Yubraj_Timsina_Transparent.webp" alt="Yubraj Timsina, Founder and Owner of CV & Cover Letter Nepal" width="1000" height="1227" loading="lazy" decoding="async" />
             <div className="about-page-identity-card">
               <strong>Yubraj Timsina</strong>
               <span>Founder &amp; Owner</span>

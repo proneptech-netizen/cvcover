@@ -47,7 +47,7 @@ export default function Footer() {
         <div className="site-footer-grid">
           <div className="site-footer-brand-column">
             <a className="site-footer-brand" href="/" aria-label="CV and Cover Letter Nepal home">
-              <span className="site-footer-logo"><img src="/assets/cv-cover-letter-nepal-logo-transparent-tight.png" alt="" /></span>
+              <span className="site-footer-logo"><img src="/assets/cv-cover-letter-nepal-logo-transparent-tight.webp" alt="" width="512" height="512" loading="lazy" decoding="async" /></span>
               <span><strong>CV &amp; Cover Letter</strong><b>Nepal <span aria-label="Nepal flag">🇳🇵</span></b></span>
             </a>
             <p>Professional online document and application assistance for clients worldwide.</p>

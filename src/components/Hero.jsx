@@ -29,7 +29,7 @@ export default function Hero() {
                   <span className="decor-circle circle-one" /><span className="decor-circle circle-two" /><span className="decor-ring ring-one" /><span className="decor-ring ring-two" />
                   <span className="dot-grid" />
                 </div>
-                <img className="founder-photo" src="/assets/Yubraj_Timsina_Transparent.png" alt="Yubraj Timsina, founder of CV and Cover Letter Nepal" width="1132" height="1389" decoding="async" fetchPriority="high" />
+                <img className="founder-photo" src="/assets/Yubraj_Timsina_Transparent.webp" alt="Yubraj Timsina, founder of CV and Cover Letter Nepal" width="1000" height="1227" decoding="async" fetchPriority="high" />
               </div>
             </div>
             <div className="specialist-info">

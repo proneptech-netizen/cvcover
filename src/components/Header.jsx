@@ -52,7 +52,7 @@ export default function Header() {
     <header className="site-header" ref={headerRef}>
       <div className="header-inner">
         <a className="brand" href="/" aria-label="CV and Cover Letter Nepal home" onClick={handleBrandClick}>
-          <img src="/assets/cv-cover-letter-nepal-logo-transparent-tight.png" alt="CV & Cover Letter Nepal logo" />
+          <img src="/assets/cv-cover-letter-nepal-logo-transparent-tight.webp" alt="CV & Cover Letter Nepal logo" width="512" height="512" decoding="async" />
           <span className="brand-copy"><strong>CV &amp; Cover Letter</strong><span>Nepal <b aria-label="Nepal flag">🇳🇵</b></span></span>
         </a>
         <button className="menu-button" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-navigation" aria-label={open ? 'Close menu' : 'Open menu'}>{open ? <X /> : <Menu />}</button>
