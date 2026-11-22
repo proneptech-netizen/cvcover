@@ -89,6 +89,12 @@ const faqs = [
     answer: 'Yes. We prepare SOPs, personal statements, admission and scholarship essays, study plans, motivation letters, Genuine Student statements, visa cover letters, appeal and reconsideration letters, and other supporting documents according to the confirmed application requirements.',
   },
   {
+    id: 'nepal-noc-assistance',
+    category: 'Study & Visa',
+    question: 'Do you provide Nepal NOC application assistance?',
+    answer: 'Yes. We assist with the online NOC application process, document checking, correction guidance and submission steps using genuine information provided by the client. Official approval, processing time and decisions remain with the relevant government authority.',
+  },
+  {
     id: 'no-guarantee',
     category: 'Study & Visa',
     question: 'Do you guarantee admission, scholarships or visa approval?',
