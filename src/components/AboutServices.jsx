@@ -26,7 +26,7 @@ const services = [
     slug: 'europass',
   },
   {
-    title: 'Study, Visa & NOC Services',
+    title: 'Study & Visa Documents',
     description: 'Nepal NOC assistance, SOPs, admission and scholarship essays, study plans, visa letters and appeals.'
     icon: GraduationCap,
     accent: 'orange',
