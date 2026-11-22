@@ -12,6 +12,7 @@ const services = [
   CABIN_CREW_SERVICE_NAMES.airlineCoverLetter,
   'Europass Services',
   'Study & Visa Documents',
+  'Nepal NOC Application Assistance',
   'Visa Appeal & Reconsideration Letter',
   'Admission Essay',
   'Scholarship Essay',
