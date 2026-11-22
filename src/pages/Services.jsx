@@ -55,7 +55,7 @@ const categories = [
   },
   {
     slug: 'study-visa', tab: 'Study & Visa', number: '03', title: 'Study & Visa Documents', count: '11 specialised services', icon: GraduationCap,
-    description: 'Professional support for international education, visa documents and Nepal NOC applications.'
+    description: 'Professional support for international education, visa documents and Nepal NOC applications.',
     note: 'Prepared using genuine, client-approved information.',
     services: [
       ['Nepal NOC Application Assistance', 'Guidance with the online NOC application, document checking, corrections and submission steps using genuine client-provided information.', FileCheck2],
