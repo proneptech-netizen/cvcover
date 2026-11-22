@@ -54,10 +54,11 @@ const categories = [
     ],
   },
   {
-    slug: 'study-visa', tab: 'Study & Visa', number: '03', title: 'Study & Visa Documents', count: '10 specialised services', icon: GraduationCap,
-    description: 'Professional document preparation and review support for international education and visa applications.',
+    slug: 'study-visa', tab: 'Study, Visa & NOC', number: '03', title: 'Study, Visa & NOC Services', count: '11 specialised services', icon: GraduationCap,
+    description: 'Professional support for international education, visa documents and Nepal NOC applications.'
     note: 'Prepared using genuine, client-approved information.',
     services: [
+      ['Nepal NOC Application Assistance', 'Guidance with the online NOC application, document checking, corrections and submission steps using genuine client-provided information.', FileCheck2],
       ['Statement of Purpose (SOP)', 'A clear, personalised statement aligned with your academic background, chosen course and future goals.', FilePenLine],
       ['Genuine Student Statement (GS)', 'Structured GS support based solely on genuine, client-approved personal and academic information.', UserRoundCheck],
       ['Admission Essay', 'Clear and personalised admission essays presenting the applicant’s academic background, goals, motivation and suitability for the selected programme.', BookOpen],
