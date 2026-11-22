@@ -43,6 +43,7 @@ export const estimatorCategories = [
   {
     id: 'study-visa', label: 'Study & Visa Documents', icon: GraduationCap,
     services: [
+      ['Nepal NOC Application Assistance', custom],
       ['Statement of Purpose (SOP)', fixed(1999, 2299, 2499)],
       ['Genuine Statement (GS)', fixed(1999, 2299, 2499)],
       ['Appeal / Reconsideration Letter', fixed(1999, 2299, 2499)],
