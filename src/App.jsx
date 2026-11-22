@@ -42,7 +42,7 @@ export default function App() {
   useEffect(() => {
     const scrollToHash = () => {
       if (!window.location.hash) {
-        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+        window.scrollTo({ top: path === '/' ? 30 : 0, left: 0, behavior: 'auto' })
         return
       }
 
@@ -58,7 +58,7 @@ export default function App() {
       if (frame !== null) window.cancelAnimationFrame(frame)
       window.removeEventListener('hashchange', scrollToHash)
     }
-  }, [isAboutPage, isServicesPage, isFreeToolsPage, isCareersPage, isContactPage, isPrivacyPage, isTermsPage, isDisclaimerPage])
+  }, [path, isAboutPage, isServicesPage, isFreeToolsPage, isCareersPage, isContactPage, isPrivacyPage, isTermsPage, isDisclaimerPage])
 
   if (isAdminPage) return <Admin />
 
